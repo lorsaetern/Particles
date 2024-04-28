@@ -1,8 +1,12 @@
 #pragma once
+#ifndef PARTICLE_H
+#define PARTICLE_H
+#define M_PI 3.1415926535897932384626433
+
 #include "Matrices.h"
 #include <SFML/Graphics.hpp>
+#include <cmath>
 
-#define M_PI 3.1415926535897932384626433
 const float G = 1000;      //Gravity
 const float TTL = 5.0;  //Time To Live
 const float SCALE = 0.999;
@@ -15,7 +19,7 @@ public:
 	Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition);
 	virtual void draw(RenderTarget& target, RenderStates states) const override;
     void update(float dt);
-    float getTTL() { return m_ttl; }
+    float getTTL();
 
     //Functions for unit testing
     bool almostEqual(double a, double b, double eps = 0.0001);
@@ -45,3 +49,5 @@ private:
     ///construct a TranslationMatrix T, add it to m_A
     void translate(double xShift, double yShift);
 };
+
+#endif

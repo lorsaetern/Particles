@@ -1,5 +1,47 @@
 #include "Particle.h"
 
+using namespace sf;
+
+Particle::Particle(RenderTarget& target, int numPoints, Vector2i mouseClickPosition): m_A(2, numPoints)
+{
+    m_A(2, numPoints);
+    m_ttl = TTL;
+    m_numPoints = numPoints;
+    m_radiansPerSec = ((float)rand() / (RAND_MAX) * M_PI);
+    m_cartesianPlane.setCenter(0, 0);
+    m_cartesianPlane.setSize(target.getSize().x, (-1.0) * target.getSize().y);
+    m_centerCoordinate = target.mapPixelToCoords(mouseClickPosition, m_cartesianPlane);
+    int numX = ((rand() % (500 - 100 + 1)) + 100);
+    int numY = ((rand() % (500 - 100 + 1)) + 100);
+    m_vx = numX;
+    if (numX % 2 != 0)
+    {
+        numX * -1;
+        m_vx = numX;
+    }
+    m_vy = numY;
+    Uint8 r = ((rand() % (255 - 0 + 1)) + 0);
+    Uint8 g= ((rand() % (255 - 0 + 1)) + 0);
+    Uint8 b= ((rand() % (255 - 0 + 1)) + 0);
+    m_color1 = Color::White;
+    m_color2 = Color::Color(r, g, b);
+
+    float theta = ((float)rand() / (RAND_MAX)*M_PI / 2);
+    float dTheta = 2 * M_PI / (numPoints - 1);
+}
+void Particle::draw(RenderTarget& target, RenderStates states) const
+{
+
+}
+void Particle::update(float dt)
+{
+
+}
+float Particle::getTTL()
+{
+    return m_ttl;
+}
+
 
 bool Particle::almostEqual(double a, double b, double eps)
 {
