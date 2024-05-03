@@ -27,7 +27,7 @@ namespace Matrices
             }
 
             ///Assign element at row i, column j
-            ///usage:  a(i,j) = x;
+            ///usage:  a(i,j) = x;*******
             double& operator()(int i, int j)
             {
                 return a.at(i).at(j);
